@@ -1,9 +1,4 @@
 # Remove-Restore-Buttons
-Certainly! Here’s a README file description for the project you’ve described. This will provide an overview of the project, how it works, and how to use it.
-
----
-
-# Task List Management
 
 ## Overview
 
@@ -90,6 +85,5 @@ Feel free to fork the repository and submit pull requests. Contributions are wel
 
 ---
 
-Replace `https://github.com/yourusername/Remove-Restore-Buttons.git` with the actual URL of your GitHub repository.
+![image](https://github.com/user-attachments/assets/c5dfbc3d-bb50-42f1-be77-bd358f0c9e91)
 
-This README file provides a comprehensive overview of the project, how to use it, and a brief explanation of the code for contributors and users.
