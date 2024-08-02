@@ -6,8 +6,11 @@
     <title>Document</title>
 </head>
 <body>
+    <!-- Buttons for removing and restoring list items -->
     <button id="all">Remove All</button>
     <button id="restore">Restore All</button>
+
+    <!-- The list that will be modified -->
     <ul id="myList">
         <li><p>Task-1</p><button class="delete-button">Delete</button></li>
         <li><p>Task-2</p><button class="delete-button">Delete</button></li>
@@ -16,42 +19,64 @@
     </ul>
 
     <script>
-        let allDelete = document.querySelector('#all')
-        let restoreAll = document.querySelector('#restore')
-        let allList = document.querySelector('#myList')
+        // Select the Remove All and Restore All buttons
+        let allDelete = document.querySelector('#all');
+        let restoreAll = document.querySelector('#restore');
 
+        // Select the list where items will be removed or restored
+        let allList = document.querySelector('#myList');
+
+        // Store the original HTML content of the list
         let originalHTML = `
         <li><p>Task-1</p><button class="delete-button">Delete</button></li>
         <li><p>Task-2</p><button class="delete-button">Delete</button></li>
         <li><p>Task-3</p><button class="delete-button">Delete</button></li>
         <li><p>Task-4</p><button class="delete-button">Delete</button></li>
-        `
+        `;
 
-        function attachDeleteEventListener(){
-            let singleDelete = document.querySelectorAll('.delete-button')
-            for(i=0; i<singleDelete.length; i++){
-                singleDelete[i].addEventListener('click', function(e){
-                    e.currentTarget.parentElement.remove()
-                })
+        // Function to attach delete event listeners to all delete buttons
+        function attachDeleteEventListener() {
+            // Select all delete buttons
+            let singleDelete = document.querySelectorAll('.delete-button');
+
+            // Iterate over each delete button and attach a click event listener
+            for(let i = 0; i < singleDelete.length; i++) {
+                singleDelete[i].addEventListener('click', function(e) {
+                    // Remove the list item (li) that contains the clicked delete button
+                    e.currentTarget.parentElement.remove();
+                });
             }
         }
 
-        function remove(){
-            while(allList.firstChild){
-                allList.removeChild(allList.firstChild)
+        // Function to remove all list items
+        function remove() {
+            // While there are still child elements in the list
+            while(allList.firstChild) {
+                // Remove the first child element (i.e., the first list item)
+                allList.removeChild(allList.firstChild);
             }
         }
 
-        function restore(){
-            remove()
-            allList.innerHTML = originalHTML
-            attachDeleteEventListener()
+        // Function to restore the original list items
+        function restore() {
+            // Remove all current list items
+            remove();
+
+            // Set the innerHTML of the list to the original HTML content
+            allList.innerHTML = originalHTML;
+
+            // Reattach delete event listeners to the newly added delete buttons
+            attachDeleteEventListener();
         }
 
-        attachDeleteEventListener()
+        // Initially attach delete event listeners to existing delete buttons
+        attachDeleteEventListener();
 
-        allDelete.addEventListener('click', remove)
-        restoreAll.addEventListener('click', restore)
+        // Add event listener to the Remove All button to clear all list items when clicked
+        allDelete.addEventListener('click', remove);
+
+        // Add event listener to the Restore All button to restore the original list items when clicked
+        restoreAll.addEventListener('click', restore);
     </script>
 </body>
 </html>
