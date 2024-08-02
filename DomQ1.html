@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="all">Remove All</button>
+    <button id="restore">Restore All</button>
+    <ul id="myList">
+        <li><p>Task-1</p><button class="delete-button">Delete</button></li>
+        <li><p>Task-2</p><button class="delete-button">Delete</button></li>
+        <li><p>Task-3</p><button class="delete-button">Delete</button></li>
+        <li><p>Task-4</p><button class="delete-button">Delete</button></li>
+    </ul>
+
+    <script>
+        let allDelete = document.querySelector('#all')
+        let restoreAll = document.querySelector('#restore')
+        let allList = document.querySelector('#myList')
+
+        let originalHTML = `
+        <li><p>Task-1</p><button class="delete-button">Delete</button></li>
+        <li><p>Task-2</p><button class="delete-button">Delete</button></li>
+        <li><p>Task-3</p><button class="delete-button">Delete</button></li>
+        <li><p>Task-4</p><button class="delete-button">Delete</button></li>
+        `
+
+        function attachDeleteEventListener(){
+            let singleDelete = document.querySelectorAll('.delete-button')
+            for(i=0; i<singleDelete.length; i++){
+                singleDelete[i].addEventListener('click', function(e){
+                    e.currentTarget.parentElement.remove()
+                })
+            }
+        }
+
+        function remove(){
+            while(allList.firstChild){
+                allList.removeChild(allList.firstChild)
+            }
+        }
+
+        function restore(){
+            remove()
+            allList.innerHTML = originalHTML
+            attachDeleteEventListener()
+        }
+
+        attachDeleteEventListener()
+
+        allDelete.addEventListener('click', remove)
+        restoreAll.addEventListener('click', restore)
+    </script>
+</body>
+</html>
